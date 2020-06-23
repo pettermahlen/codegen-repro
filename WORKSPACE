@@ -20,6 +20,10 @@ maven_install(
         "https://repo1.maven.org/maven2",
     ],
     strict_visibility = True,
+    excluded_artifacts = [
+       "org.jetbrains.kotlin:kotlin-reflect",
+       "org.jetbrains.kotlin:kotlin-stdlib",
+    ],
 )
 
 rules_kotlin_version = "legacy-1.4.0-rc3"
