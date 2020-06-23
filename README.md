@@ -152,3 +152,40 @@ INFO: Elapsed time: 0.401s, Critical Path: 0.29s
 INFO: 0 processes.
 FAILED: Build did NOT complete successfully
 ```
+
+Changing `third_party/moshi_kotlin_codegen/BUILD.bazel` to 
+```
+java_plugin(
+    name = "moshi_kotlin_codegen_plugin",
+    processor_class = "com.squareup.moshi.kotlin.codegen.JsonClassCodegenProcessor",
+    deps = [
+      "@maven//:com_squareup_moshi_moshi_kotlin_codegen",
+    ],
+    generates_api = True,
+)
+
+java_library(
+    name = "moshi_kotlin_codegen",
+    exported_plugins = [":moshi_kotlin_codegen_plugin"],
+    visibility = ["//visibility:public"],
+    exports = [
+    ],
+)
+```
+
+And the other BUILD.bazel to
+```
+load("@io_bazel_rules_kotlin//kotlin:kotlin.bzl", "kt_jvm_library")
+
+kt_jvm_library(
+    name = "repro",
+    srcs = glob([
+          "**/*.kt",
+    ]),
+    deps = [
+        "@maven//:com_squareup_moshi_moshi",
+        "@maven//:com_squareup_moshi_moshi_kotlin_codegen",
+    ],
+)
+```
+means that the annotation processor doesn't run at all.
