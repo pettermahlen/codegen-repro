@@ -23,6 +23,7 @@ maven_install(
     excluded_artifacts = [
        "org.jetbrains.kotlin:kotlin-reflect",
        "org.jetbrains.kotlin:kotlin-stdlib",
+       "org.jetbrains.kotlin:kotlin-stdlib-jdk7",
     ],
 )
 
