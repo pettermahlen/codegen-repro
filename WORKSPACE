@@ -47,6 +47,7 @@ kt_download_local_dev_dependencies()
 
 load("@io_bazel_rules_kotlin//kotlin:kotlin.bzl", "kotlin_repositories", "kt_register_toolchains")
 
+# === CONFIGURATION FOR SPECIFIC VERSION OF KOTLINC
 KOTLIN_VERSION = "1.3.72"
 KOTLINC_RELEASE_SHA="ccd0db87981f1c0e3f209a1a4acb6778f14e63fe3e561a98948b5317e526cc6c"
 KOTLINC_RELEASE = {
@@ -56,5 +57,11 @@ KOTLINC_RELEASE = {
     "sha256": KOTLINC_RELEASE_SHA,
 }
 kotlin_repositories(compiler_release = KOTLINC_RELEASE)
+# === END OF SPECIFIC KOTLINC VERSION CONFIGURATION
+
+# === CONFIGURATION OF DEFAULT KOTLINC VERSION
+#kotlin_repositories()
+# === END OF DEFAULT KOTLINC VERSION CONFIGURATION
+
 
 kt_register_toolchains()

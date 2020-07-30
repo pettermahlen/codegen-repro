@@ -189,3 +189,18 @@ kt_jvm_library(
 )
 ```
 means that the annotation processor doesn't run at all.
+
+
+# when does it work and not?
+
+- Works:
+  - local rules_kotlin on current master (https://github.com/bazelbuild/rules_kotlin/commit/d897c946d37f0851295c6c5c588a7140722a5a25), compiler version 1.3.72
+  - local rules_kotlin at (https://github.com/bazelbuild/rules_kotlin/commit/53cd4b28108694ec11bd64ea3ad5a52ccd363963), compiler version 1.3.72
+  - local rules_kotlin on legacy-1.4.0-rc3, compiler version 1.3.72
+
+- KotlinReflectionNotSupportedError:
+  - local rules_kotlin on HEAD (https://github.com/bazelbuild/rules_kotlin/commit/d897c946d37f0851295c6c5c588a7140722a5a25), default compiler version
+  - local rules_kotlin after (https://github.com/bazelbuild/rules_kotlin/commit/53cd4b28108694ec11bd64ea3ad5a52ccd363963), default compiler version
+  - local rules_kotlin on legacy-1.4.0-rc3, default compiler
+  - released version of rules_kotlin with compiler 1.3.72
+  - released version of rules_kotlin with default compiler
